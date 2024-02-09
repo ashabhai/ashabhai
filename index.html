@@ -3,14 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Website Title</title>
-    <link rel="stylesheet" href="index.css">
+    <title>Home Page - Your Website Title</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Add your slider styles here */
+        .slider-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slider-content {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slider-item {
+            flex: 0 0 100%; /* Flex item to take full width of container */
+            max-width: 100%; /* Ensure images don't overflow */
+        }
+    </style>
 </head>
 <body>
 
 <header>
-    <h1>Ashabhai & Co. Ltd</h1>
-    <nav class="right-align">
+    <h1>Your Website</h1>
+    <nav>
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="about.php">About Us</a></li>
@@ -21,15 +39,36 @@
 </header>
 
 <main>
-    <section>
-        <h2>Welcome to Our Website!</h2>
-        <p>This is the home page content.</p>
-    </section>
+    <div class="slider-container">
+        <div class="slider-content">
+            <div class="slider-item"><img src="image1.jpg" alt="Image 1"></div>
+            <div class="slider-item"><img src="image2.jpg" alt="Image 2"></div>
+            <!-- Add more slider items as needed -->
+        </div>
+    </div>
 </main>
 
 <footer>
     <p>&copy; <?php echo date("Y"); ?> Your Website. All rights reserved.</p>
 </footer>
+
+<script>
+    // JavaScript for slider functionality
+    const slider = document.querySelector('.slider-content');
+    const sliderItems = document.querySelectorAll('.slider-item');
+    const sliderWidth = sliderItems[0].clientWidth;
+    let counter = 0;
+
+    function slide() {
+        counter++;
+        if (counter === sliderItems.length) {
+            counter = 0;
+        }
+        slider.style.transform = `translateX(-${sliderWidth * counter}px)`;
+    }
+
+    setInterval(slide, 3000); // Change slide every 3 seconds
+</script>
 
 </body>
 </html>
